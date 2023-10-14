@@ -5,19 +5,23 @@ const bodyParser = require('body-parser');
 
 const path = require('path');
 
-app.get('/peticion', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
 
 
 
-app.use(express.static('public'));
+
+
 
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
+app.use(express.static('public'));
+
+
+
+
+
 
 app.post('/screenshot', async (req, res) => {
     const url = req.body.url;
@@ -47,7 +51,9 @@ app.post('/screenshot', async (req, res) => {
     }
 });
 
-
+app.get('/peticion', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 
 
