@@ -65,7 +65,7 @@ app.get('/peticion', (req, res) => {
                 const url = document.getElementById("urlInput").value;
 
                 try {
-                    const response = await fetch('http://localhost:3000/screenshot', {
+                    const response = await fetch('http://192.168.100.81:3000/peticion', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
