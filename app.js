@@ -29,6 +29,7 @@ app.post('/screenshot', async (req, res) => {
         res.set('Content-Type', 'image/png');
         res.send(screenshot);
     } catch (error) {
+        console.log(error)
         res.status(500).send('Error al capturar la página');
     }
 });
