@@ -2,6 +2,18 @@ const express = require('express');
 const puppeteer = require('puppeteer');
 const bodyParser = require('body-parser');
 
+
+const path = require('path');
+
+app.get('/peticion', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+
+
+app.use(express.static('public'));
+
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -36,64 +48,6 @@ app.post('/screenshot', async (req, res) => {
 });
 
 
-app.get('/peticion', (req, res) => {
-    res.send(`
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Screenshot App</title>
-    </head>
-
-    <body>
-
-        <div>
-            <h2>Captura de pantalla de URL</h2>
-            <input type="text" id="urlInput" placeholder="Ingresa la URL">
-            <button onclick="getScreenshot()">Capturar</button>
-        </div>
-
-        <div>
-            <h3>Descarga tu captura</h3>
-            <a id="downloadLink" href="#" download="screenshot.png" style="display:none;">Descargar Imagen</a>
-        </div>
-
-        <script>
-            async function getScreenshot() {
-                const url = document.getElementById("urlInput").value;
-
-                try {
-                    const response = await fetch('http://192.168.100.81:3000/peticion', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ url })
-                    });
-
-                    if (!response.ok) {
-                        alert('Error al obtener la captura.');
-                        return;
-                    }
-
-                    const blob = await response.blob();
-                    const objectURL = URL.createObjectURL(blob);
-                    const downloadLink = document.getElementById("downloadLink");
-                    downloadLink.href = objectURL;
-                    downloadLink.style.display = 'block';
-                } catch (error) {
-                    alert('Ocurrió un error: ' + error.message);
-                }
-            }
-        </script>
-
-    </body>
-
-    </html>
-    `);
-});
 
 
 
