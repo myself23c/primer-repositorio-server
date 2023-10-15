@@ -24,9 +24,10 @@
         <script>
             async function getScreenshot() {
                 const url = document.getElementById("urlInput").value;
-// 'http://192.168.100.81:3000/peticion'
+// 'http://192.168.100.81:3001/screenshot'
+// 'http://localhost:3001/screenshot'
                 try {
-                    const response = await fetch('http://192.168.100.81:3001/screenshot', {
+                    const response = await fetch('http://localhost:3001/screenshot', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
