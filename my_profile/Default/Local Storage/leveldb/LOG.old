@@ -1,3 +1,5 @@
-2023/10/15-01:54:44.179 4280 Reusing MANIFEST C:\Users\IGNITER\Desktop\proyectosweb\servidorpaas\my_profile\Default\Local Storage\leveldb/MANIFEST-000001
-2023/10/15-01:54:44.180 4280 Recovering log #24
-2023/10/15-01:54:44.182 4280 Reusing old log C:\Users\IGNITER\Desktop\proyectosweb\servidorpaas\my_profile\Default\Local Storage\leveldb/000024.log 
+2023/10/15-02:21:36.080 4cc4 Reusing MANIFEST C:\Users\IGNITER\Desktop\proyectosweb\servidorpaas\my_profile\Default\Local Storage\leveldb/MANIFEST-000001
+2023/10/15-02:21:36.080 4cc4 Recovering log #24
+2023/10/15-02:21:36.081 4cc4 Level-0 table #26: started
+2023/10/15-02:21:36.084 4cc4 Level-0 table #26: 24951 bytes OK
+2023/10/15-02:21:36.087 4cc4 Delete type=0 #24

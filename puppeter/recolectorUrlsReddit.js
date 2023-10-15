@@ -3,7 +3,13 @@
 
 
 import puppeteer from "puppeteer";
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
 export async function recolectadorUrls(urlPage, numberScrolls = 10, numberChangeTop = 5, numberChangeYear = 8) {
+
+  const currentDir = dirname(fileURLToPath(import.meta.url));
+  const userDataDir = join(currentDir, '..', 'my_profile');
 
 const URL_PAGE = urlPage;
 const URL_TOP = URL_PAGE + "top/?t=all";
@@ -18,7 +24,7 @@ const CHANGE_YEAR = numberChangeYear; // en que escroll cambia a mejores fotos d
 async function saveUrlsToFile() {
   const browser = await puppeteer.launch({
     headless: "new",
-    userDataDir: "./my_profile",
+    userDataDir: userDataDir,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
 
