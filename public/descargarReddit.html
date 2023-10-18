@@ -22,7 +22,9 @@
           const url = formData.get('url');
           const payload = JSON.stringify({ url });
 
-          const response = await fetch('http://localhost:3001/reddit', {
+          //http://162.222.176.186:3002/
+          //'http://localhost:3001/reddit'
+          const response = await fetch('http://162.222.176.186:3002/reddit', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
