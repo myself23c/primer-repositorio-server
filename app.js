@@ -98,7 +98,7 @@ app.post("/reddit", async (req, res) => {
                 res.status(500).send('Error al descargar el archivo');
             } else {
                 console.log("se borraron los archivos creados")
-                await deleteFiles();
+               
             }
         });
 
