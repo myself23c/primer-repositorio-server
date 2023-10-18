@@ -6,10 +6,10 @@ import puppeteer from "puppeteer";
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
-export async function recolectadorUrls(urlPage, numberScrolls = 10, numberChangeTop = 5, numberChangeYear = 8) {
+export async function recolectadorUrls(urlPage, numberScrolls = 10, numberChangeTop = 5, numberChangeYear = 8,wsEndpoint,pagePassed,browser) {
 
-  const currentDir = dirname(fileURLToPath(import.meta.url));
-  const userDataDir = join(currentDir, '..', 'my_profile');
+  //const currentDir = dirname(fileURLToPath(import.meta.url));
+  //const userDataDir = join(currentDir, '..', 'my_profile');
 
 const URL_PAGE = urlPage;
 const URL_TOP = URL_PAGE + "top/?t=all";
@@ -21,7 +21,15 @@ const TIME_BETWEEN_SCROLL = 800; // time between entre scrolls
 const CHANGE_TOP = numberChangeTop; // en que numero de scrollcambia a mejores fotos del year
 const CHANGE_YEAR = numberChangeYear; // en que escroll cambia a mejores fotos de todos los tiempos top
 
+
+const ws = await wsEndpoint;
+const p = await pagePassed;
+const browser1 = await browser;
+
+console.log(ws,p,browser1)
+
 async function saveUrlsToFile() {
+  /*
   const browser = await puppeteer.launch({
     headless: "new",
     userDataDir: userDataDir,
@@ -29,6 +37,14 @@ async function saveUrlsToFile() {
   });
 
   const page = await browser.newPage();
+  
+  */
+  await new Promise((resolve) => setTimeout(resolve, 3500));
+
+  await puppeteer.connect({ browserWSEndpoint: ws });
+  await new Promise((resolve) => setTimeout(resolve, 3500));
+  const page = await p
+
   await page.goto(URL_PAGE || url1.urlReddit, { waitUntil: "networkidle2" });
 
   let imgUrls = new Set();
@@ -117,7 +133,7 @@ async function saveUrlsToFile() {
 
   // Escribir URLs al archivo .txt
   const urlDeImgArr = await Array.from(imgUrls)
-  await browser.close();
+  await browser1.close();
   await console.log("test terminado");
  return urlDeImgArr
 
@@ -132,5 +148,4 @@ return urlsFinalesGuardadas
 const final = await recolectadorUrls("https://www.reddit.com/r/cats/")
 
 console.log(final)
-
 */

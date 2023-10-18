@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Formulario para descargar archivo ZIP</title>
+  </head>
+  <body>
+    <form id="urlForm">
+      <label for="url">URL:</label>
+      <input type="text" id="url" name="url">
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="downloadLinkContainer"></div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('urlForm');
+        const downloadLinkContainer = document.getElementById('downloadLinkContainer');
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const formData = new FormData(form);
+          const url = formData.get('url');
+          const payload = JSON.stringify({ url });
+
+          const response = await fetch('http://localhost:3001/reddit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: payload
+          });
+
+          if (response.ok) {
+            const blob = await response.blob();
+            const objectUrl = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = objectUrl;
+            link.download = 'archivo.zip';
+            link.innerHTML = 'Descargar archivo ZIP';
+            downloadLinkContainer.innerHTML = ''; // Limpiar el contenedor de enlaces
+            downloadLinkContainer.appendChild(link);
+          } else {
+            console.error('Error en la solicitud:', response);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
