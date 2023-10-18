@@ -22,7 +22,7 @@ const __dirname = dirname(__filename);
 
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
