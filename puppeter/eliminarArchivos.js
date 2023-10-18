@@ -29,4 +29,4 @@ export async function deleteFiles() {
 }
 
 // Ejecuta la función
-deleteFiles().catch(console.error);
+
