@@ -3,7 +3,15 @@ const puppeteer = require('puppeteer');
 const funcion1 = async () => {
 
     console.log("iniciando browser")
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({   
+    headless: "new",
+    defaultViewport: null,
+    args: [
+        `--window-size=1366,768`,
+        `--no-sandbox`,
+        `--disable-setuid-sandbox`,
+        `--disable-web-security`,
+    ], });
     const wsEndpoint = browser.wsEndpoint();
 
     const page = await browser.newPage()
