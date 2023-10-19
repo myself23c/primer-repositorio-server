@@ -5,9 +5,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import {recParDowRed} from './puppeter/indexPup.js'
-import fs from 'fs';
+//import fs from 'fs';
 import fsp from 'fs/promises'
-import {deleteFiles} from './puppeter/eliminarArchivos.js'
+//import {deleteFiles} from './puppeter/eliminarArchivos.js'
 
 
 
@@ -72,7 +72,6 @@ const checkFileExists = async (filePath, timeout = 30000, maxAttempts = 10) => {
 };
 
 
-
 app.post("/reddit", async (req, res) => {
     const url = req.body.url;
 
@@ -82,23 +81,23 @@ app.post("/reddit", async (req, res) => {
 
     try {
         console.log("Se empezó con el capturado de URLs de Reddit");
-       await recParDowRed(url); // Asumiendo que esta función genera el archivo
+
+        // Ejecutar función y luego esperar 40 segundos
+        await recParDowRed(url);
+        await new Promise((resolve) => setTimeout(resolve, 40000));
 
         const filePath = path.join(__dirname, 'puppeter', 'imagenes.zip');
 
-        // Esperar a que el archivo se cree
+        // Comprobar si el archivo existe
         await checkFileExists(filePath);
 
         // Ahora el archivo debería existir, procedemos a enviarlo
-
-
         res.download(filePath, 'imagenes.zip', async (err) => {
             if (err) {
                 console.log(err);
                 res.status(500).send('Error al descargar el archivo');
             } else {
-                console.log("se borraron los archivos creados")
-               
+                console.log("se envio archivo");
             }
         });
 
@@ -107,6 +106,7 @@ app.post("/reddit", async (req, res) => {
         res.status(500).send('Error al capturar URLs de Reddit');
     }
 });
+
 
 
 

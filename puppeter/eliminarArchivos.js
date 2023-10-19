@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export async function deleteFiles() {
+async function deleteFiles() {
   // Eliminar todo lo que se encuentre en la carpeta ./downloaded_images
   const directory = path.join(__dirname, 'downloaded_images');
   
@@ -30,3 +30,4 @@ export async function deleteFiles() {
 
 // Ejecuta la función
 
+deleteFiles()

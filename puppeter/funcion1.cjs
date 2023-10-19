@@ -11,6 +11,8 @@ const funcion1 = async () => {
         `--no-sandbox`,
         `--disable-setuid-sandbox`,
         `--disable-web-security`,
+        '--disable-popup-blocking',
+      '--disable-notifications',
     ], });
     const wsEndpoint = browser.wsEndpoint();
 
