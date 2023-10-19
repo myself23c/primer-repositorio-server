@@ -50,7 +50,7 @@ export async function downloadImagesFromUrls(urlsParseadas) {
             });
         });
         await new Promise((resolve) => setTimeout(resolve, 3000));
-        console.log(`se descargó ${contador}`);
+        console.log(`>>> Se esta descargando la imagen numero ${contador}`);
         contador++;
     }
 

@@ -6,7 +6,7 @@ async function funcion2(wsEndpoint,pagePassed) {
 
 
 
-    console.log("iniciando funcion2 ")
+    console.log(">>>>>>>>>>>>>>> me estoy logeando")
 
     //const browser = 
     await puppeteer.connect({ browserWSEndpoint: wsEndpoint });
@@ -34,7 +34,7 @@ async function funcion2(wsEndpoint,pagePassed) {
     await Promise.all(promises);
   }
   await new Promise((resolve) => setTimeout(resolve, 3500));
-  {
+  try{
     const targetPage = page;
     await puppeteer.Locator.race([
       targetPage.locator("span:nth-of-type(3) span > span"),
@@ -46,8 +46,13 @@ async function funcion2(wsEndpoint,pagePassed) {
           y: 13,
         },
       });
+  } catch (err) {
+    console.log(err);
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>ya estabas logeado asi que no secesitas relogearte ")
+    return
   }
-  {
+
+  try{
     const targetPage = page;
     await puppeteer.Locator.race([targetPage.locator("#login-username")])
       .setTimeout(timeout)
@@ -57,15 +62,29 @@ async function funcion2(wsEndpoint,pagePassed) {
           y: 4.513916015625,
         },
       });
+  } catch (err) {
+    console.log(err);
+    console.log("returnando desde user")
+    return
   }
-  {
+
+
+  try{
     const targetPage = page;
     await puppeteer.Locator.race([targetPage.locator("#login-username")])
       .setTimeout(timeout)
       .fill("thelordthering");
+  } catch (err) {
+    console.log(err);
+    console.log("returnando desde user")
+    return
   }
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-  {
+
+
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+
+  try{
     const targetPage = page;
     await puppeteer.Locator.race([
       targetPage.locator(
@@ -79,15 +98,24 @@ async function funcion2(wsEndpoint,pagePassed) {
           y: 33.5,
         },
       });
+  } catch (err) {
+    console.log(err);
+    
   }
-  {
+
+
+  try{
     const targetPage = page;
     await puppeteer.Locator.race([targetPage.locator("#login-password")])
       .setTimeout(timeout)
       .fill("7c70c7ea23c");
+  } catch (err) {
+    console.log(err);
   }
-  await new Promise((resolve) => setTimeout(resolve, 5000));
-  {
+
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  try{
     const targetPage = page;
     await waitForElement(
       {
@@ -107,8 +135,12 @@ async function funcion2(wsEndpoint,pagePassed) {
       targetPage,
       timeout
     );
+  } catch (err) {
+    console.log(err);
   }
-  {
+
+
+  try{
     const targetPage = page;
     const promises = [];
     const startWaitingForEvents = () => {
@@ -128,7 +160,10 @@ async function funcion2(wsEndpoint,pagePassed) {
         },
       });
     await Promise.all(promises);
+  } catch (err) {
+    console.log(err);
   }
+
   await new Promise((resolve) => setTimeout(resolve, 12000));
 
   try {
@@ -163,7 +198,7 @@ async function funcion2(wsEndpoint,pagePassed) {
     console.log(err);
   }
   await new Promise((resolve) => setTimeout(resolve, 5000));
-  {
+  try{
     const targetPage = page;
     await puppeteer.Locator.race([targetPage.locator("path:nth-of-type(3)")])
       .setTimeout(timeout)
@@ -173,6 +208,8 @@ async function funcion2(wsEndpoint,pagePassed) {
           y: 15.5,
         },
       });
+  } catch (err) {
+    console.log(err);
   }
   await new Promise((resolve) => setTimeout(resolve, 12000));
   //await browser.close();

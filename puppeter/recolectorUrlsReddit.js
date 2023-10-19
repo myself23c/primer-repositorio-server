@@ -6,7 +6,7 @@ import puppeteer from "puppeteer";
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
-export async function recolectadorUrls(urlPage, numberScrolls = 10, numberChangeTop = 5, numberChangeYear = 8,wsEndpoint,pagePassed,browser) {
+export async function recolectadorUrls(urlPage, numberScrolls = 100, numberChangeTop = 50, numberChangeYear = 75,wsEndpoint,pagePassed,browser) {
 
   //const currentDir = dirname(fileURLToPath(import.meta.url));
   //const userDataDir = join(currentDir, '..', 'my_profile');
@@ -128,13 +128,13 @@ async function saveUrlsToFile() {
     newUrls.forEach((url) => imgUrls.add(url));
     await scrolleado();
     await new Promise((resolve) => setTimeout(resolve, TIME_BETWEEN_SCROLL));
-    console.log(`esta es la escroleada numero ${i}`);
+    console.log(`>>>Esta es la escroleada numero ${i}`);
   }
 
   // Escribir URLs al archivo .txt
   const urlDeImgArr = await Array.from(imgUrls)
   await browser1.close();
-  await console.log("test terminado");
+  await console.log(">>>>>> Terminado captura de urls");
  return urlDeImgArr
 
 }

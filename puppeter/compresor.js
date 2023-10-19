@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 export async function compresor (){
 
 
-    console.log("estoy comprimiendo esperate")
+    console.log(">>>>>>> Estoy comprimiendo esperate")
     const downloadFolder = path.join(__dirname, 'downloaded_images');
     await fs.ensureDir(downloadFolder);
 
