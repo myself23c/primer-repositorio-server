@@ -49,6 +49,7 @@ const funcion1 = async () => {
         userDataDir: path.resolve(__dirname, 'myUserDataDir'),  // Aquí se especifica el directorio
         defaultViewport: null,
         args: [
+          '--blink-settings=imagesEnabled=false',  // esta en test para no cargar imagenes
             `--window-size=1366,768`,
             `--no-sandbox`,
             `--disable-setuid-sandbox`,

@@ -13,7 +13,7 @@ async function funcion2(wsEndpoint,pagePassed) {
 
   const page = pagePassed
   
-  const timeout = 25000;
+  const timeout = 50000;
   page.setDefaultTimeout(timeout);
 
   {

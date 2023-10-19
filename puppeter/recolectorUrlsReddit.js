@@ -6,7 +6,7 @@ import puppeteer from "puppeteer";
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
-export async function recolectadorUrls(urlPage, numberScrolls = 100, numberChangeTop = 50, numberChangeYear = 75,wsEndpoint,pagePassed,browser) {
+export async function recolectadorUrls(urlPage, numberScrolls = 80, numberChangeTop = 50, numberChangeYear = 15,wsEndpoint,pagePassed,browser) {
 
   //const currentDir = dirname(fileURLToPath(import.meta.url));
   //const userDataDir = join(currentDir, '..', 'my_profile');
@@ -48,7 +48,7 @@ async function saveUrlsToFile() {
   await page.goto(URL_PAGE || url1.urlReddit, { waitUntil: "networkidle2" });
 
   let imgUrls = new Set();
-
+/*
   const extractImgUrls = async () => {
     return await page.$$eval("img", (imgElms) => {
       const urls = [];
@@ -60,6 +60,18 @@ async function saveUrlsToFile() {
       return urls;
     });
   };
+*/
+const extractImgUrls = async () => {
+  return await page.$$eval("img", (imgElms) => {
+    const urls = [];
+    imgElms.forEach((elm) => {
+      if (elm.src) {
+        urls.push(elm.src);
+      }
+    });
+    return urls;
+  });
+};
 
   const scrolleado = async () => {
     await page.evaluate(async () => {
@@ -69,6 +81,8 @@ async function saveUrlsToFile() {
 
   for (let i = 0; i < NUMBER_SCROLLS; i++) {
     ////primer bloque de primer url ////
+    try{ 
+
     if (i === CHANGE_TOP) {
       await page.goto(URL_TOP || url1.URL_TOP_YEAR, {
         waitUntil: "networkidle2",
@@ -128,7 +142,11 @@ async function saveUrlsToFile() {
     newUrls.forEach((url) => imgUrls.add(url));
     await scrolleado();
     await new Promise((resolve) => setTimeout(resolve, TIME_BETWEEN_SCROLL));
-    console.log(`>>>Esta es la escroleada numero ${i}`);
+    console.log(`>>>Esta es la escroleada numero ${i}`);}
+    catch(e) {
+      console.log(e)
+      console.log(`!>>>Ubo un error de scroll en la scrolleada ${i}`)
+    }
   }
 
   // Escribir URLs al archivo .txt
