@@ -6,7 +6,7 @@ import puppeteer from "puppeteer";
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
-export async function recolectadorUrls(urlPage, numberScrolls = 80, numberChangeTop = 50, numberChangeYear = 15,wsEndpoint,pagePassed,browser) {
+export async function recolectadorUrls(urlPage, numberScrolls = 200, numberChangeTop = 120, numberChangeYear = 160,wsEndpoint,pagePassed,browser) {
 
   //const currentDir = dirname(fileURLToPath(import.meta.url));
   //const userDataDir = join(currentDir, '..', 'my_profile');
